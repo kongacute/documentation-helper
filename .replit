@@ -1,0 +1,29 @@
+modules = ["python-3.11"]
+run = "streamlit run main.py"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "streamlit run main.py"]
+
+[workflows]
+runButton = "Run core.py"
+
+[[workflows.workflow]]
+name = "Run ingestion.py"
+mode = "sequential"
+author = 38524554
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python ingestion.py"
+
+[[workflows.workflow]]
+name = "Run core.py"
+mode = "sequential"
+author = 38524554
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python backend/core.py"
