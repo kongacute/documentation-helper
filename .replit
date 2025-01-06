@@ -1,0 +1,17 @@
+modules = ["python-3.11"]
+
+[workflows]
+runButton = "Run Streamlit app"
+
+[[workflows.workflow]]
+name = "Run Streamlit app"
+mode = "sequential"
+author = 38524554
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "streamlit run main.py"
+
+[[ports]]
+localPort = 8501
+externalPort = 80
